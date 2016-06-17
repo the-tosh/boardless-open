@@ -1,0 +1,15 @@
+<tr class="item-group" data-item_group_id="<%- @ig.id %>" data-child_type="items_group">
+    <td>
+        Group <span class="title"><%- @ig.title %></span>
+    </td>
+    <td colspan="4">
+        <button type="button" class="btn btn-xs <%- if @ig.is_equippable then 'btn-green' else 'btn-grey' %>" data-item-group-id="<%- @ig.id %>" data-attr-name="is_equippable" onclick="page.change_item_group_attr(this);"> Is equippable</button>
+        <button class="btn btn-xs <%- if @ig.is_usable then 'btn-green' else 'btn-grey' %>" data-item-group-id="<%- @ig.id %>" data-attr-name="is_usable" onclick="page.change_item_group_attr(this);">Is usable</button>
+        <button class="btn btn-xs <%- if @ig.has_charge then 'btn-green' else 'btn-grey' %>" data-item-group-id="<%- @ig.id %>" data-attr-name="has_charge" onclick="page.change_item_group_attr(this);">Has charge</button>
+        <button class="btn btn-xs <%- if @ig.has_durability then 'btn-green' else 'btn-grey' %>" data-item-group-id="<%- @ig.id %>" data-attr-name="has_durability" onclick="page.change_item_group_attr(this);">Has durability</button>
+        <button class="btn btn-xs <%- if @ig.has_damage then 'btn-green' else 'btn-grey' %>" data-item-group-id="<%- @ig.id %>" data-attr-name="has_damage" onclick="page.change_item_group_attr(this);" >Has damage</button>
+    </td>
+    <!-- <td>
+        <button class="btn btn-xs btn-blue" data-item-group-id="<%- @ig.id %>" data-attr-name="is_disabled">Enabled</button>
+    </td> -->
+</tr>

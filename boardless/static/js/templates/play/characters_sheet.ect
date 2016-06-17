@@ -1,0 +1,92 @@
+<table border="1">
+	<thead>
+		<tr>
+			<% for tpl in @cols_for_char_tbl: %>
+				<td><%- tpl[0] %></td>
+			<% end %>
+			<% if @master?: %>
+				<td>Add XP</td>
+			<% end %>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% for character_id, character of @characters: %>
+			<tr id="js-characters-sheet-character-row-<%- character_id %>">
+				<% for tpl in @cols_for_char_tbl: %>
+					<% outer_key = tpl[1] %>
+					<% inner_key = tpl[2] %>
+
+					<% if inner_key == 'name' and not character.is_online: %>
+						<% _class = "half-opaque" %>
+					<% else: %>
+						<% _class = "" %>
+					<% end %>
+
+					<td class="<%- _class %>">
+						<% switch outer_key: %>
+							<% when 'skills_category': %>
+								<% if inner_key?: %>
+									<span id='js-category-points-value-<%- character.id %>-<%- inner_key %>' class='js-category-points-value' data-category-id='<%- inner_key %>' data-character-id='<%- character.id %>' style='color: green;'>
+										<%- character.skill_points[inner_key] or 0 %>
+									</span>
+
+									<% if false and @master?: %>
+										<% include '/static/js/templates/play/modificators.ect', { 'mod_name': 'points', 'character-id': character.id, 'category-id': inner_key } %>
+									<% end %>
+								<% end %>
+							<% end %>
+							<% when 'skill': %>
+								<% if @skills[inner_key].category_id: %>
+									<span id='js-skill-value-<%- character.id %>-<%- inner_key %>' class='js-skill-value-<%- character.id %>' data-skill-id=<%- inner_key %> data-category-id=<%- @skills[inner_key].category_id %>>
+
+										<span class='js-value'>
+											<%- character.skills[inner_key].effective_value %>
+										</span>
+
+									</span>
+
+									<% if @the_player? and @the_player.id == character.id and not @skills[inner_key].formula: %>
+										<% include '/static/js/templates/play/skill_modificators.ect', { 'skill_id' : inner_key, 'category_id': @skills[inner_key].category_id } %>
+									<% end %>
+								<% else: %>
+									<%- character.skills[inner_key].effective_value %>
+								<% end %>
+							<% end %>
+							<% else: %>
+								<% switch inner_key: %>
+									<% when 'name': %>
+										<span id='js-character-name-<%- character.id %>'>
+											<% if @the_player? and @the_player.id == character.id: %>
+												<%- character[inner_key] %> (You)
+											<% else: %>
+												<%- character[inner_key] %>
+											<% end %>
+										</span>
+									<% end %>
+									<% when 'xp': %>
+										<span id='js-character-xp-<%- character.id %>' class='js-character-xp-value' data-character-id='<%- character.id %>'>
+											<%- character[inner_key] %>
+										</span>
+									<% end %>
+									<% else: %>
+										<span id='js-character-<%-inner_key %>-<%- character.id %>'>
+											<%- character[inner_key] %>
+										</span>
+									<% end %>
+								<% end %>
+							<% end %>
+						<% end %>
+					</td>
+				<% end %>
+				<% if @master?: %>
+				<td style="width: 100px;">
+					<input class='js-addxp-character' data-character-id='<%- character.id %>' type='text' value='0' style='width: 50px;'/>
+				</td>
+				<% end %>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<button class="btn btn-blue" id="js-characters-sheet-apply-btn" style="margin-top: 5px;">APPLY</button>

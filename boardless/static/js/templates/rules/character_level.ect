@@ -1,0 +1,36 @@
+<table id='character-levels-table'>
+	<tr>
+		<th>Level</th>
+		<th>XP</th>
+		<% for skills_category in @skills_categories: %>
+			<th> Granted skills formula (<%- skills_category.title %>)
+		<% end %>
+	</tr>
+	<% for settings in @level_settings: %>
+		<tr>
+			<td class="level_settings-level">
+				<%- settings.level %>
+			</td>
+			<td>
+				<input name="level_settings-<%- settings.level - 1 %>-rules_id" type="hidden" value="<%- settings.rules_id %>">
+				<input name="level_settings-<%- settings.level - 1 %>-xp" type="text" value="<%- settings.xp %>" />
+			</td>
+			<% for num, skills_category of @skills_categories: %>
+				<%
+					formula = settings.skills_categories_formulas[skills_category.id] or 0
+					# TODO: Doublequotes in formula conflict with dublequotes in HTML markup. Sick!
+				%>
+
+				<td>
+					<input type="hidden" name="skills_categories_formulas-<%- num %>-category_id" value="<%- skills_category.id %>">
+					<input type="hidden" name="skills_categories_formulas-<%- num %>-level" value="<%- settings.level %>">
+					<input id="<%- settings.formula_elem_ids.skills_categories[skills_category.id] %>" name="skills_categories_formulas-<%- num %>-formula" type="text" value="<%- formula %>" />
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+
+<div style="margin-top: 10px;">
+	<a class="btn btn-blue validate-this-button" id="level-table-add-rows">Add rows</a> <input class="required" id="level-rows-to-add" value="3"/>
+</div>

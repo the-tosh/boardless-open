@@ -1,0 +1,9 @@
+<div class="dice-block">
+	<% if @value?: %>
+		<div class="dice-value <%- @dice.name %>">
+			<strong><%- @value %></strong>
+		</div>
+	<% end %>
+	<img src="<%- @dice.image_url %>" />
+	<p><strong><%- @dice.name %></strong></p>
+</div>

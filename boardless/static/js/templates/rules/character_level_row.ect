@@ -1,0 +1,17 @@
+<tr data-level="<%- @level %>" class="js-level-row">
+	<td class="level_settings-level">
+		<%- @level %>
+	</td>
+	<td>
+		<input name="level_settings-<%- @level - 1 %>-rules_id" type="hidden" value="<%- @rules_id %>">
+		<input name="level_settings-<%- @level - 1 %>-xp" type="text" value=""/>
+	</td>
+
+	<% for num, skills_category of @skills_categories: %>
+		<td>
+			<input type="hidden" name="skills_categories_formulas-<%- num %>-category_id" value="<%- skills_category.id %>">
+			<input type="hidden" name="skills_categories_formulas-<%- num %>-level" value="<%- @level %>">
+			<input id="<%- @level %>_<%- skills_category.id %>" class="js-level-formula-field" name="skills_categories_formulas-<%- num %>-formula" type="text" value="0"/>
+		</td>
+	<% end %>
+</tr>

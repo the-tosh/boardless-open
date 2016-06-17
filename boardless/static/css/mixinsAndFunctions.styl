@@ -1,0 +1,77 @@
+/*	Version 1.0.7	*/
+
+/*	Change log 	*/
+//1.0.7
+//Added function of width calculation
+
+/*  Mixins  */
+borderRadius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+
+textShadow(hLength=false, vLength=' ', blur=' ', hColor=' ')
+	if hLength==false
+		text-shadow none		
+		filter dropshadow(enabled \= false)
+	else
+		text-shadow hLength vLength vLength hColor
+		filter dropshadow(color\=hColor + 20%, offx\=hLength, offy\=vLength)
+
+boxShadow(hLength, vLength="", blur="", spread="", rgba-color="", inst=false)
+	if hLength!=none
+		if inst
+			-webkit-box-shadow inset hLength vLength blur spread rgba-color
+			-moz-box-shadow inset hLength vLength blur spread rgba-color
+			box-shadow inset hLength vLength blur spread rgba-color
+		if inst==false
+			-webkit-box-shadow hLength vLength blur spread rgba-color
+			-moz-box-shadow  hLength vLength blur spread rgba-color
+			box-shadow hLength vLength blur spread rgba-color
+	else
+		-webkit-box-shadow none
+		-moz-box-shadow  none
+		box-shadow none
+
+transitions(time)
+	-webkit-transition all time ease
+	-moz-transition all time ease
+	-ms-transition all time ease
+	-o-transition all time ease
+	transition all time ease
+
+boxSizing(val=border-box)
+	-moz-box-sizing val
+	-webkit-box-sizing val
+	box-sizing val
+
+transform(vSacale=1, vRotate=0, vTranslateX=0, vTranslateY=0, vSkewX=0, vSkewy=0)
+	-moz-transform scale(vSacale) rotate(vRotate) translateX(vTranslateX) translateY(vTranslateY) skewX(vSkewX) skewY(vSkewy)
+	-webkit-transform scale(vSacale) rotate(vRotate) translateX(vTranslateX) translateY(vTranslateY) skewX(vSkewX) skewY(vSkewy)
+	-o-transform scale(vSacale) rotate(vRotate) translateX(vTranslateX) translateY(vTranslateY) skewX(vSkewX) skewY(vSkewy)
+	-ms-transform scale(vSacale) rotate(vRotate) translateX(vTranslateX) translateY(vTranslateY) skewX(vSkewX) skewY(vSkewy)
+	transform scale(vSacale) rotate(vRotate) translateX(vTranslateX) translateY(vTranslateY) skewX(vSkewX) skewY(vSkewy)
+
+columnCount(count)
+	-moz-column-count count
+	-webkit-column-count count
+	column-count count
+	
+/*  End Of Mixins  */
+
+/*  Functions  */
+fontSize(size, lineHeight)
+	font-size ((size*0.0625)em)
+	line-height ((lineHeight/size)em)
+
+fs(size, lineHeight)
+	((size*0.0625)em) \/ ((lineHeight/size)em)
+
+blockWidth(w, units, p = 0)
+	if p > 0
+		width unquote(join('',(w - p*2),units))
+		padding-left unquote(join('',p,units))
+		padding-right unquote(join('',p,units))
+	if p == 0
+		width unquote(join('',w,units))
+/*  End Of Functions  */

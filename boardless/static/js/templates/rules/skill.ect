@@ -1,0 +1,7 @@
+<tr data-child_type="skill" class="skill" data-child_id="<%- @skill.id %>" data-is_disabled="<%- +@skill.is_disabled %>">
+    <td class="js-skill-title"><%- @skill.title %></td>
+    <td>Base value: <%- @skill.base_value %> / Max value: <%- @skill.max_value %></td>
+    <td>
+        <button class="btn btn-red btn-xs" type="button" onclick="page.change_status(this);">Disable</button>
+    </td>
+</tr>

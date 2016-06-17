@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -e
+
+if [ "$#" -lt 1 ]
+then
+    echo "usage error: provide config as parameter"
+    exit 1
+fi
+
+patterns="*.py;*.ini"
+
+watchmedo auto-restart \
+    --recursive \
+    --patterns $patterns \
+    --directory . \
+    bash -- -c "nozope=1 python ./main.py \"$@\""

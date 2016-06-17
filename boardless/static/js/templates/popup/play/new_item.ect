@@ -1,0 +1,13 @@
+<div id="js-new-item-container">
+	<form class="js-new-item-form popup-form">
+		Item: <select name="item" class="js-select2">
+			<% for item in @items: %>
+				<option value="<%- item.id %>"><%- item.title %></option>
+			<% end %>
+		</select>
+		Durability: <input type="text" name="durability" value="100" />
+	</form>
+
+	<span id="js-new-item-form-ok-btn" class="btn btn-blue">OK</span>
+	<span id="js-new-item-form-cancel-btn" class="btn btn-blue">CANCEL</span>
+</div>

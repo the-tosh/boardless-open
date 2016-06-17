@@ -1,0 +1,4 @@
+<div class="js-play-object" id='js-play-object-<%- @object.type %>-<%- @object.id %>' style='position: absolute; top: <%- @object.point.y %>px; left: <%- @object.point.x %>px; z-index: 3; text-align: center; cursor: pointer;'>
+	<img class='js-play-object-img' src='<%- @object.img_url %>' style='pointer-events: none;' />
+	<span class='js-play-object-title' style='color: black; font-weight: bold; display: block; pointer-events: none;'><%- @object.title %></span>
+</div>

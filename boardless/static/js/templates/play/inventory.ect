@@ -1,0 +1,42 @@
+<thead>
+	<tr><td colspan="100"><strong>Inventory</strong></td></tr>
+</thead>
+
+<tbody>
+	<% for item_group in @item_groups: %>
+		<tr>
+			<td>
+				<strong><%- item_group.title %></strong>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+
+		<% if @items.inventory[item_group.id]?: %>
+			<% for item in @items.inventory[item_group.id]: %>
+				<tr>
+					<td></td>
+					<td>
+						<%- item.title %>
+					</td>
+					<td>
+						<span class="js-put-item-on clickable" data-item-id="<%- item.id %>">
+
+						Put on
+
+						</span>
+					</td>
+				</tr>
+			<% end %>
+
+		<% else: %>
+			<tr>
+				<td></td>
+				<td>----</td>
+				<td></td>
+			</tr>
+		<% end %>
+
+	<% end %>
+</tbody>

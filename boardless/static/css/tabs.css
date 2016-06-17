@@ -1,0 +1,43 @@
+ ul.tabs {
+	list-style: none;
+}
+.tabs li {
+	float: left;
+	width: 16.66666%;
+
+}
+.tabs a {
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	text-weight: bold;
+	color: #888;
+	padding: 20px 0;
+	border-bottom: 2px solid #888;
+	background: #f7f7f7;
+
+}
+.tabs a:hover,
+.tabs a.active {
+	background: #ddd;
+	border-bottom: 2px solid #27aae1;
+}
+.tabgroup > div {
+	padding: 10px;
+	/*box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);*/
+}
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+
+.rules-tabgroup h2{
+	margin-bottom: 10px;
+}
+
+/*.rules-tabgroup > div input {
+	margin: 5px;
+}*/

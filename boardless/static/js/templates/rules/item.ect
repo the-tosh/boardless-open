@@ -1,0 +1,11 @@
+<tr class="item" data-items_group_id="<%- @item.group_id %>" data-child_type="item" data-child_id="<%- @item.id %>" data-is_disabled="<%- +@item.is_disabled %>">
+    <td><%- @number %></td>
+    <td class="js-child-title"><%- @item.title %></td>
+    <td>Slots Consumed: <%- @item.attrs.slots_consumed %></td>
+    <td>
+        <%- @skills %>
+    </td>
+    <td>
+        <button class="btn btn-blue btn-xs" type="button" onclick="page.change_status(this);">Disable</button>
+    </td>
+</tr>

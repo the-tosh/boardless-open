@@ -1,0 +1,39 @@
+<thead>
+	<tr><td colspan="100"><strong>Character</strong></td></tr>
+</thead>
+
+<tbody>
+	<% for item_group in @item_groups: %>
+		<tr>
+			<td>
+				<strong><%- item_group.title %></strong>
+			</td>
+			<td></td>
+			<td></td>
+		</tr>
+
+		<% if @items.equipped[item_group.id]?: %>
+			<% for item in @items.equipped[item_group.id]: %>
+				<tr>
+					<td></td>
+					<td>
+						<%- item.title %>
+					</td>
+					<td>
+						<span class="js-take-item-off clickable" data-item-id="<%- item.id %>">
+
+						Take off
+
+						</span>
+					</td>
+				</tr>
+			<% end %>
+		<% else: %>
+			<tr>
+				<td></td>
+				<td>----</td>
+				<td></td>
+			</tr>
+		<% end %>
+	<% end %>
+</tbody>

@@ -1,0 +1,17 @@
+<div class="row">
+    <div class="column w40 p-default form-control">
+         <label for="race_skill_id_<%- @counter %>">Skill name</label>
+         <select name="skills-<%- @counter %>-skill_id" id="skills__<%- @counter %>__skill_id">
+             <% for skill_id, skill_data of @skills: %>
+                 <option value="<%- skill_id %>"><%- skill_data.title %></option>
+             <% end %>
+         </select>
+     </div>
+     <div class="column w10 p-default form-control">
+        <label for='race_mod_<%- @counter %>'>Value</label>
+        <input type="number" name="skills-<%- @counter %>-mod" id="skills__<%- @counter %>__mod">
+     </div>
+     <div class="column w10 p-default form-control" style="padding-top: 15px;">
+        <button type="button" class="btn btn-red" onclick="page.delete_skill_row(this);"> X </button>
+     </div>
+</div>

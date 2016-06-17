@@ -1,0 +1,18 @@
+<div id="js-update-item-container">
+	<form class="js-update-item-form popup-form">
+		<input type="hidden" name="id" value="<%- @object.id %>" />
+		Item: <select name="item" class="js-select2">
+			<% for item in @items: %>
+				<% if item.id == @object.item_id: %>
+					<option value="<%- item.id %>" selected="selected"><%- item.title %></option>
+				<% else: %>
+					<option value="<%- item.id %>"><%- item.title %></option>
+				<% end %>
+			<% end %>
+		</select>
+		Durability: <input type="text" name="durability" value="<%- @object.durability %>" />
+	</form>
+	<span id="js-update-item-form-ok-btn" class="btn btn-blue">OK</span>
+	<span id="js-update-item-form-cancel-btn" class="btn btn-blue">CANCEL</span>
+	<span id="js-update-item-form-delete-btn" class="btn btn-red right">DELETE</span>
+</div>

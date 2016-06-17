@@ -1,0 +1,8 @@
+<tr data-child_type="character_class" data-child_id="<%- @character_class.id %>" data-is_disabled="<%- +@character_class.is_disabled %>">
+    <td><%- @character_class_counter %></td>
+    <td class='js-child-title'><%- @character_class.title %></td>
+    <td><%- @skills %></td>
+    <td>
+        <button class="btn btn-blue btn-xs" type="button" onclick="page.change_status(this);">Disable</button>
+    </td>
+</tr>

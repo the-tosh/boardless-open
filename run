@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -e
+
+if [ "$#" -lt 1 ]
+then
+	echo "usage error: provide config as parameter"
+	exit 1
+fi
+
+patterns="*.py;*.ini;*.coffee;*.styl;*.pegjs"
+
+ignore_patterns="*/venv/*;*/server/*"
+
+watchmedo auto-restart \
+	--recursive \
+	--patterns $patterns \
+	--directory . \
+	--ignore-patterns $ignore_patterns \
+	bash -- -c "python boardless/scripts/compile_static.py && exec pserve -- \"$@\""

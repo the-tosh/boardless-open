@@ -1,0 +1,10 @@
+<% if @character.is_online: %>
+	<% style = "display: inline-block; text-align: center; opacity: 1" %>
+<% else: %>
+	<% style = "display: inline-block; text-align: center; opacity: 0.5" %>
+<% end %>
+
+<div id="js-toolbox-character-avatar-<%- @character.id %>" class="js-toolbox-set-tool" data-tool="playfield-object" data-object-type="player" data-title="<%- @character.name %>" data-img-url="<%- @character.avatar %>" data-player-id="<%- @character.id %>" style="<%- style %>">
+	<img src="<%- @character.avatar %>" alt="<%- @character.name %>"></img>
+	<span style='color: black; font-weight: bold; display: block;'><%- @character.name %></span>
+</div>

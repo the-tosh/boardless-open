@@ -1,0 +1,26 @@
+<span
+	style='color: blue; cursor: pointer'
+	class='js-inc-<%- @mod_name %>'
+
+	<% for k, v of @: %>
+		<% if k != 'mod_name': %>
+			data-<%- k %>='<%- v %>'
+		<% end %>
+	<% end %>
+
+	>
+	+
+</span>
+<span> \ </span>
+<span
+	style='color: blue; cursor: pointer'
+	class='js-dec-<%- @mod_name %>'
+
+	<% for k, v of @: %>
+		<% if k != 'mod_name': %>
+			data-<%- k %>='<%- v %>'
+		<% end %>
+	<% end %>
+>
+--
+</span>

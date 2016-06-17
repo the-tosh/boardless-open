@@ -1,0 +1,782 @@
+@import "normalize.styl"
+@import "mixinsAndFunctions.styl"
+@import "glyphIcons.styl"
+
+//  Colors
+col-grey = #49515E
+col-light_grey = #939598
+col-green = #8DC63F
+col-blue = #27AAE1
+
+/*  Common Styles */
+hr
+	border 0
+	height 1px
+	background-image linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0))
+	margin 20px 0
+
+.half-opaque
+	opacity 0.5
+
+.clear:after
+	clear both
+	display block
+	width 100%
+	content ""
+.clear-left
+	clear left
+.clear-right
+	clear right
+.hidden
+	display none!important
+span.error
+	color #ff0000
+span.success
+	color #0000ff
+.clickable
+	cursor pointer
+	span&
+		color blue
+		border-bottom 1px dashed #00f
+.text-right
+	text-align right
+.text-left
+	text-align left
+.text-center
+	text-align center
+.left
+	float left
+.right
+	float right
+.chosen-border
+	border 2px solid col-blue
+.icon25
+	width 25px
+	height 25px
+.icon32
+	width 32px
+	height 32px
+
+
+.popup-form
+	padding-bottom 5px
+
+table.admin-left-menu
+	width 15em
+	text-align center
+
+	tbody
+		tr
+			font-size 125%
+		td
+			padding 5px 0
+
+tr.js-clickable
+	cursor pointer
+	&:hover
+		background-color #90ca3f !important
+
+table.striped
+	tbody
+		tr
+			&:nth-child(odd)
+				background-color #dfdfe0
+
+/*  Admin   */
+
+.left-menu-wrapper
+	width 15em
+	float left
+
+.admin-page-wrapper
+	width calc(100% - 15em)
+	float left
+
+.admin-list
+	margin 0 auto
+	width 100%
+
+/*  Play  */
+.playfield
+	position relative
+	border 2px solid #a3a3a3
+	height 500px
+	width 1000px
+
+	canvas
+		position absolute
+		background-color transparent
+
+		&.playfield-draw
+			z-index 2
+
+		&.playfield-grid
+			z-index 1
+
+.js-active-tool
+	@extends .chosen-border
+
+table.player-inventory, table.choose-skills
+	border 1px solid #a3a3a3
+	margin 5px
+	min-width 300px
+
+	td
+		text-align center
+		padding 3px
+		min-width 100px
+		border 1px solid #a3a3a3
+
+table.tools
+	margin 5px
+
+	tr
+		height 32px
+
+	td
+		height 32px
+		padding 5px
+
+.dices-panel
+	border 1px solid black
+	text-align center
+	position absolute
+	z-index 10
+	min-width 180px
+	width 300px
+	background-color white
+	right 0px
+
+	.head
+		width 100%
+		background #49515e none repeat scroll 0 0
+		color #fff
+		height 20px
+		padding-top 1px
+		margin-bottom 20px
+
+	.middle-title
+		border-bottom 1px solid #000
+		border-top 1px solid #000
+		padding 7px
+		margin 5px 0
+
+.dice-block
+	text-align center
+	display inline-block
+	position relative
+
+	.dice-value
+		color #fff
+		position absolute
+		width 100%
+		height 100%
+		top 15%
+
+		&.d8
+			color #000 !important
+
+/*  Buttons   */
+.btn
+	borderRadius(.2em)
+	display inline-block
+	padding .3em .8em
+	border none
+	border-bottom 1px solid #FFF  
+	text-decoration none
+	color #FFF
+	cursor pointer
+	&:hover
+		border-bottom-width 1px
+		border-bottom-style solid
+.btn-mini
+	padding .25em .2em .15em .2em 
+.btn-mini.icon
+	padding-right .3em
+.btn-xs
+	padding 1px 2px
+.btn-blue
+	background col-blue
+	border-bottom-color col-blue
+	&:hover
+		background col-blue + 10%
+		border-bottom-color col-blue - 10%
+
+.btn-red
+	background #ea2626
+	border-bottom-color #ea2626
+	&:hover
+		background #ff1a1a
+		border-bottom-color #ff1a1a
+
+.btn-green
+	background col-green
+	&:hover
+		background col-green + 10%
+		border-bottom-color col-green - 10%
+.btn-grey
+	background col-light_grey
+	&:hover
+		background col-light_grey + 10%
+		border-bottom-color col-light_grey - 10%
+
+
+/*  Width blocks  */
+for num in (1..10)
+	size = (num*10)
+	.{'w' + size}
+		display block
+		blockWidth(size,\%)
+	if num<10
+		.{'w' + (size+5)}
+			display block
+			blockWidth((size+5),\%)
+
+for num in (1..10)
+	size = (num*10)
+	.{'w' + size + '.p-default'}
+		blockWidth(size,\%,1)
+	if num<10
+		.{'w' + (size+5) + '.p-default'}
+			blockWidth((size+5),\%,1)
+
+/* Margin blocks */
+for _margin in (1..10)
+	_m = (_margin * 5)
+	.{'m' + _m}
+		margin _m px
+
+/*	Forms 	*/
+input[type=text],
+input[type=password]
+	borderRadius(3px)
+	width 97.5%
+	padding .2em 1%
+	border 1px solid col-light_grey + 50%
+	&.has-error
+		border 1px solid red
+
+input[type=number]
+	width 97.5%
+	padding .2em 1%
+	border 1px solid col-light_grey + 50%
+	&.has-error
+		border 1px solid red
+select
+	width 100%
+	padding 0 1%
+input[type=checkbox]
+	float left
+	// margin-top 1em
+	margin-right .3em
+	&+label
+		margin-top 1em
+label
+	margin-bottom .2em
+	&.required:after
+		margin-left 2px
+		fontSize(16,20)
+		content "*"
+		color red
+textarea
+	width 97.5%
+	height 5em
+	padding .2em 1%
+
+
+/*  Table Block Styles  */
+.table-block
+	table
+		width 100%
+		border 1px solid col-light_grey + 50%
+		color col-grey
+		tr
+			&:nth-child(2n)
+				background col-light_grey + 90%
+			&.title
+				background col-light_grey + 70%
+			&.new-table-item
+				background #FFF
+		td
+			padding .5em
+		.new-table-item
+			div 
+				float left
+				div
+					
+					margin .5em 0
+					div
+						margin .2em 0
+		.new-table-item-title
+			font-weight bold
+
+/*  Nanoscroller Styles   */
+.nano 
+	position relative
+	width 96%
+	height 100%
+	margin 0 2%
+	overflow hidden
+
+	> .nano-content
+		position absolute
+		overflow scroll
+		overflow-x hidden
+		top 0
+		right 0
+		bottom 0
+		left 0
+
+		&:focus
+			outline thin dotted
+
+		::-webkit-scrollbar
+			visibility hidden
+
+	&.has-scrollbar
+		>.nano-content::-webkit-scrollbar
+			visibility visible
+
+	> .nano-pane 
+		transitions(.2s)
+		borderRadius(.2em)
+		background col-light_grey + 70%
+		position absolute
+		width 10px
+		right 0
+		top 0
+		bottom 0
+		> .nano-slider
+			borderRadius(.2em)  
+			position relative
+			margin 0 1px
+			background col-light_grey
+			cursor pointer
+
+	&:hover
+		> .nano-pane
+				visibility visible\9
+				opacity 0.99
+			&.active
+				visibility visible\9
+				opacity 0.99
+			&.flashed 
+				visibility visible\9
+				opacity 0.99 
+
+
+/*  Main Styles */
+html
+	font normal medium/1em 'Open Sans Condensed', 'sans-serif'
+.wrapper
+	width 1000px
+	margin 0 auto
+article
+	padding-bottom 2em
+	&:after
+		clear both
+		display block
+		content ""
+a
+	color col-blue
+	&:visited
+		col-blue
+
+/*  Elements  */
+.block-title
+	margin-bottom .5em
+	fontSize(18,20)
+	font-weight bold
+	color col-grey
+.openable-block
+	margin-bottom 0.2em
+	&_title
+		margin 0 .2em
+		padding .4em 0
+		border-bottom 1px solid col-light_grey + 50%
+		fontSize(14,16)
+		font-weight bold
+		a
+			text-decoration none
+			color col-grey
+			&:last-child
+				float right
+		.icon
+			fontSize(18,16)
+			font-weight normal
+			color col-light_grey
+		span
+			position relative
+			top .2em
+			padding-right .2em
+	&_content
+		display none
+	&.open
+		.openable-block_content
+			display block
+		.openable-block_opener .icon:before
+			content "\e368"
+.opener
+	display none
+			
+
+/*  Header  */
+.header
+	padding 0 20px
+	background col-grey
+
+.logo
+	float left
+	width 17%
+	margin-right 3%
+	padding 10px 0
+	img
+		width 100%
+	
+.header-menu
+	float left
+	display block
+	width 60%
+	padding-top 20px
+	vertical-align top
+	a
+		display inline-block
+		margin 0 .5em
+		text-decoration none
+		color #FFF
+
+		&:hover
+			color #90ca3f
+		&.active
+			color #90ca3f
+
+.user-block
+	borderRadius(3px)
+	display inline-block
+	width 18.5%
+	margin 5px 0
+	padding .5%
+	border 1px solid #FFF
+.user-block_avatar
+	float left
+	width 40px
+	background #FFF
+.user-block_name
+	float left
+	padding 0 3%
+	fontSize(12,15)
+	font-weight bold
+	color #FFF
+.user-block_settings
+	float right
+	margin .4em .35em 0 0
+	padding 0
+	fontSize(20,20)
+	text-decoration none
+	color #FFF
+.user-block_logout
+	float right
+	margin .4em .35em 0 .4em
+	padding 0
+	fontSize(20,20)
+	text-decoration none
+	color #FFF
+
+/*  Article   */
+.navigation
+	margin 1.2em 0 .6em 0
+	fontSize(16,20)
+	font-weight bold
+	color col-grey
+	a
+		text-decoration none
+		color col-blue
+		&:hover
+			color #90ca3f
+		&:after
+			content " / "
+/*  Article / Create Game Block   */
+.create-game
+	float left
+	fontSize(14,16)
+	div
+		float left    
+		margin-bottom 1em
+		label, select
+			display block
+			color col-grey
+		select
+			margin-bottom .1em
+	.add-stat
+		div
+			min-height 46px
+		
+/*  Article / Stuff Block   */  
+.stuff
+	float right
+.stuff-block
+	borderRadius(.3em)
+	border 1px solid col-light_grey
+.btn-block
+	margin-top .5em
+	margin-bottom .5em
+	fontSize(14,16)
+	.btn
+		margin-bottom .2em
+.stuff-list
+	height auto
+	max-height 360px
+	margin-top .5em
+	margin-bottom 1.5em
+	fontSize(14,16)
+	p
+		padding .5em .4em
+		clear both
+		a
+			display block
+			width 90%
+			margin-left 10%
+		.btn-mini
+			position absolute
+			width auto
+			margin 0
+			fontSize(16,16)
+.stuff-info
+	boxShadow(0, 0, 8px, 2px, rgba(#27AAE1,.3))
+	position absolute
+	z-index 2
+	display none
+	width 200px
+	height auto
+	margin 0 0 0 20px
+	padding 5px 20px 10px 20px
+	background-color white
+	&.active
+		display block
+	&__item
+		margin 10px 0
+		fontSize(16,16)
+		&__data
+			float right
+			min-width 14px
+			height 16px
+			margin-top -2px
+			padding 2px 5px
+			background-color #8DC63F
+			text-align center
+			color white
+			
+
+/*  Rulles Add Group  */
+.rules-add_group
+.rules-add_item
+	div
+		float left
+		min-height 30px
+	label
+		display block
+	input[type=text]
+		margin-bottom 5px
+	select
+		margin-bottom 1em
+		
+
+/*  Login styles  */
+.auth
+	margin-top 15%
+	text-align center
+	form
+		margin 0 auto
+		label
+			display block
+			text-align left
+		div
+			margin-bottom 15px
+			
+/*  Popup styles  */
+.popup
+	&__bg
+		position fixed
+		top 0
+		left 0
+		z-index 100
+		width 100%
+		height 100%
+		background rgba(0, 0, 0, .7)
+	&__wrapper
+		position absolute
+		z-index 121
+		top 150px
+		left 50%
+		width 360px
+		margin 0 0 0 -200px
+		padding 20px
+		background-color white
+		text-align right
+	&__close
+		position absolute
+		margin -50px 0 0 -10px
+		fontSize(30,30)
+		text-decoration none
+	&__body
+		text-align left
+		
+
+/*  Autocomplete  */
+#js-skills-formula-autocomplete-dropdown
+	width 100%
+	margin 0
+	.choice
+		display block
+		width 97.5%
+		margin -1px 0 0 0
+		padding 3px 1%
+		border 1px solid col-light_grey + 50%
+		border-width 0 1px
+		&:nth-child(even)
+			background-color col-light_grey + 75%
+		&:hover
+			background-color col-blue
+			color white
+			cursor pointer
+	p:last-child
+		clear both
+		width 100%
+		border-bottom 1px solid col-light_grey + 50%
+
+
+/*  BELIY AV  */
+
+.center
+	text-align center
+
+.has-error
+	border 1px solid red
+
+
+table.custom-table
+	width 100%
+	text-align center
+	th
+		font-weight bold
+	td
+		padding 10px
+
+
+// COLUMNS
+
+.row
+	.column
+		float: left
+		// margin: 5px;
+	&:after
+		clear both
+		display block
+		width 100%
+		content ""
+
+form
+	.form-title
+		font-weight bold
+		text-align center
+		margin 10px 0
+	.form-control
+		margin-top 10px
+
+// RULLES
+.child-title-disabled
+	text-decoration line-through
+
+
+// SKILLS
+
+table.skills-table,
+table.items-table
+	width 100%
+	border 1px solid #c9cacb
+	margin-top 10px
+	tr
+		&.skills-category,
+		&.item-group
+			background #dfdfe0
+			td
+				padding 10px
+			.title
+				font-weight bolder
+	tr
+		&.skill,
+		&.item
+			td
+				padding 2px
+			background #f4f4f5
+		
+		&.category-no-skills
+			td
+				padding 2px
+				text-align center
+			background #f4f4f5
+
+
+table.races-table
+	width 100%
+	border 1px solid #c9cacb
+	margin-top 10px
+	tr
+		td
+			padding 2px
+			background #f4f4f5
+
+ul.dices
+	list-style-type none
+	li
+		display inline-block
+	input[type="checkbox"][id^="dice"]
+		display none
+
+	label
+		border 1px solid #fff
+		padding 10px
+		display block
+		position relative
+		margin 10px
+		cursor pointer
+
+	label.no-border:before
+			border 0px !important
+
+
+	label:before
+		background-color white
+		color white
+		content " "
+		display block
+		border-radius 50%
+		border 1px solid grey
+		position absolute
+		top -5px
+		left -5px
+		width 25px
+		height 25px
+		text-align center
+		line-height 28px
+		transition-duration 0.4s
+		transform scale(0)
+
+
+	label img
+		height 100px
+		width 100px
+		transition-duration 0.2s
+		transform-origin 50% 50%
+
+	:checked + label
+		border-color #ddd
+
+	:checked + label:before
+		content "✓"
+		background-color grey
+		transform scale(1)
+
+	:checked + label img
+		transform scale(0.9)
+		z-index -1

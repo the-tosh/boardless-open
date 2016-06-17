@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "admin.js",
+  "sourceRoot": "../../home/tosh/Coding/Python/Boardless",
+  "sources": [
+    "boardless/static/coffee/admin.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;AAAA,EAAA,CAAA,CAAE,SAAA,GAAA;WACE,CAAA,CAAE,iBAAF,CAAoB,CAAC,IAArB,CAA0B,OAA1B,EAAmC,SAAC,CAAD,GAAA;AAC/B,UAAA,GAAA;AAAA,MAAA,GAAA,GAAM,CAAA,CAAE,CAAC,CAAC,aAAJ,CAAkB,CAAC,IAAnB,CAAwB,KAAxB,CAAN,CAAA;aACA,MAAM,CAAC,QAAP,GAAkB,IAFa;IAAA,CAAnC,EADF;EAAA,CAAF,CAAA,CAAA;AAAA"
+}
