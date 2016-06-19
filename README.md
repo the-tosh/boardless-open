@@ -1,6 +1,22 @@
 boardless README  
 ==================  
 
+# WHAT'S THIS ALL ABOUT
+
+Boardless was started as a service where each user would be able to create his own rules for tabletop roleplaying games and play them with friends. Today it's somehow in beta-version and needs more people to move on. A lot of features have not been implemented yet: game cards, voice and video chats, characters' perks etc.  
+
+So now boardless is open and waiting for new collaborators to improve it.  
+
+## Short-list of implemented features
+
+1. Skills and skills categories
+2. Items, items groups, inventory, equippable stuff
+3. XP and level settings
+4. Playfield with dices and characters table
+5. Tools for drawing on the canvas
+
+# SET UP AND RUN
+
 **FOR UBUNTU 14.04 (x64)**  
 
 1. virtualenv --no-site-packages venv  
@@ -37,3 +53,8 @@ boardless README
 3. ./run SETTINGS.ini  
 
 NOTE: If is_dev=true is in SETTINGS.ini, settings.js will be generated automatically before starting the server
+
+# LICENSE
+
+Oh yes, about the license.  
+It's [ASL](https://en.wikipedia.org/wiki/Apache_License).  
